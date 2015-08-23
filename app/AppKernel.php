@@ -11,17 +11,17 @@ class AppKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-            new Sylius\Bundle\TranslationBundle\SyliusTranslationBundle(),
-            new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Sylius\Bundle\ResourceBundle\SyliusResourceBundle(),
             new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
             new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle(),
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Sylius\Bundle\TranslationBundle\SyliusTranslationBundle(),
             new AppBundle\AppBundle(),
         );
 
