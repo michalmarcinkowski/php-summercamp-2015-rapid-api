@@ -6375,12 +6375,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/pjedrzejewski/Sylius.git",
-                "reference": "f3768ac37c881661821740545702e31e37daa695"
+                "reference": "087a1eae912f8df68ce568efec419f03a5046e53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/pjedrzejewski/Sylius/zipball/f3768ac37c881661821740545702e31e37daa695",
-                "reference": "f3768ac37c881661821740545702e31e37daa695",
+                "url": "https://api.github.com/repos/pjedrzejewski/Sylius/zipball/087a1eae912f8df68ce568efec419f03a5046e53",
+                "reference": "087a1eae912f8df68ce568efec419f03a5046e53",
                 "shasum": ""
             },
             "require": {
@@ -6571,7 +6571,7 @@
             "support": {
                 "source": "https://github.com/pjedrzejewski/Sylius/tree/resource-bundle-refactoring"
             },
-            "time": "2015-08-21 20:39:31"
+            "time": "2015-08-23 21:54:43"
         },
         {
             "name": "symfony-cmf/block-bundle",
