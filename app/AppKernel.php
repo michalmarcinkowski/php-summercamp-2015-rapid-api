@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sylius\Bundle\TranslationBundle\SyliusTranslationBundle(),
+            new \winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
             new AppBundle\AppBundle(),
         );
 
