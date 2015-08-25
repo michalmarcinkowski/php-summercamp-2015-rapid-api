@@ -1,0 +1,21 @@
+{
+  "page": @integer@,
+  "limit": @integer@,
+  "pages": @integer@,
+  "total": @integer@,
+  "_links": {
+    "self": {
+      "href": @string@
+    },
+    "first": {
+      "href": @string@
+    },
+    "last": {
+      "href": @string@
+    }
+  },
+  "_embedded": {
+    "items": [
+    ]
+  }
+}

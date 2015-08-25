@@ -3,6 +3,7 @@
 namespace AppBundle\Tests\Controller;
 
 use AppBundle\Test\ApiTestCase;
+use Nelmio\Alice\Loader\Yaml as Loader;
 
 class MovieControllerTest extends ApiTestCase
 {
@@ -11,10 +12,18 @@ class MovieControllerTest extends ApiTestCase
         $this->client->request('POST', '/movies/', [
             'title' => 'Some movie',
             'description' => 'Some description',
-            'releaseDate' => '2015-08-25'
+            'releaseDate' => '2015-08-25',
+            'budget' => 10000
         ]);
 
         $this->assertSuccessfulCreateResponse($this->client->getResponse(), 'movie/movie_create');
+    }
+
+    public function testShowMovie404()
+    {
+        $this->client->request('GET', '/movies/1');
+
+        $this->assertNotFoundResponse($this->client->getResponse());
     }
 
     public function testShowMovie()
@@ -22,7 +31,8 @@ class MovieControllerTest extends ApiTestCase
         $movieId = $this->createMovie(array(
             'title' => 'My movie',
             'description' =>'My description',
-            'releaseDate'=> '2015-08-20'
+            'releaseDate'=> '2015-08-20',
+            'budget' => 100000
         ));
 
         $this->client->request('GET', '/movies/'.$movieId);
@@ -30,16 +40,17 @@ class MovieControllerTest extends ApiTestCase
         $this->assertSuccessfulGetResponse($this->client->getResponse(), 'movie/movie_show');
     }
 
+    public function testEmptyMoviesList()
+    {
+        $this->client->request('GET', '/movies/');
+
+        $this->assertSuccessfulGetResponse($this->client->getResponse(), 'movie/empty_movies_list');
+    }
+
     public function testShowMoviesList()
     {
-        //TODO change to alice
-        for ($i = 1; $i < 3; ++$i) {
-            $this->createMovie(array(
-                'title' => 'Some movie'.$i,
-                'description' =>'Some description'.$i,
-                'releaseDate'=> '2015-08-0'.$i
-            ));
-        }
+        $this->loadMovies();
+
         $this->client->request('GET', '/movies/');
 
         $this->assertSuccessfulGetResponse($this->client->getResponse(), 'movie/movies_list');
@@ -50,13 +61,15 @@ class MovieControllerTest extends ApiTestCase
         $movieId = $this->createMovie(array(
             'title' => 'My movie',
             'description' =>'My description',
-            'releaseDate'=> '2015-08-20'
+            'releaseDate'=> '2015-08-20',
+            'budget' => 100000
         ));
 
         $this->client->request('PUT', '/movies/'.$movieId, [
             'title' => 'Not my movie',
             'description' => 'My description',
-            'releaseDate' => '2015-08-20'
+            'releaseDate' => '2015-08-20',
+            'budget' => 100000
         ]);
 
         $this->assertSuccessfulUpdateResponse($this->client->getResponse());
@@ -67,7 +80,8 @@ class MovieControllerTest extends ApiTestCase
         $movieId = $this->createMovie(array(
             'title' => 'My movie',
             'description' =>'My description',
-            'releaseDate'=> '2015-08-20'
+            'releaseDate'=> '2015-08-20',
+            'budget' => 100000
         ));
 
         $this->client->request('PATCH', '/movies/'.$movieId, [
@@ -77,12 +91,20 @@ class MovieControllerTest extends ApiTestCase
         $this->assertSuccessfulPartialUpdateResponse($this->client->getResponse());
     }
 
+    function testDeleteMovie404()
+    {
+        $this->client->request('DELETE', '/movies/1');
+
+        $this->assertNotFoundResponse($this->client->getResponse());
+    }
+
     function testDeleteMovie()
     {
         $movieId = $this->createMovie(array(
             'title' => 'My movie',
             'description' =>'My description',
-            'releaseDate'=> '2015-08-20'
+            'releaseDate'=> '2015-08-20',
+            'budget' => 100000
         ));
 
         $this->client->request('DELETE', '/movies/'.$movieId);
@@ -99,8 +121,16 @@ class MovieControllerTest extends ApiTestCase
         $this->client->request('POST', '/movies/', $data);
         $jsonResponse = json_decode($this->client->getResponse()->getContent());
 
-//        var_dump($jsonResponse);
-
         return $jsonResponse->id;
+    }
+
+    private function loadMovies()
+    {
+        $loader = new Loader();
+        $objects = $loader->load(__DIR__.'/../../DataFixtures/TestData/movies.yml');
+        foreach ($objects as $object) {
+            $this->defaultEntityManager->persist($object);
+        }
+        $this->defaultEntityManager->flush();
     }
 }

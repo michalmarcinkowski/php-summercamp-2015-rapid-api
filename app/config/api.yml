@@ -7,3 +7,9 @@ fos_rest:
     format_listener:
         rules:
             - { path: '^/', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
+
+sylius_resource:
+    resources:
+        app.movie:
+            classes:
+                model: AppBundle\Entity\Movie
