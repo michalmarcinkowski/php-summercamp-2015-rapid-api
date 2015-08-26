@@ -8,6 +8,7 @@ use Symfony\Component\Finder\Finder;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Nelmio\Alice\Loader\Yaml as Loader;
 use Symfony\Component\HttpFoundation\Response;
+use Doctrine\ORM\EntityManagerInterface;
 
 abstract class ApiTestCase extends BaseWebTestCase
 {
@@ -16,9 +17,19 @@ abstract class ApiTestCase extends BaseWebTestCase
      */
     protected $client;
 
+    /**
+     * @var EntityManagerInterface
+     */
+    protected $defaultEntityManager;
+
+    public function __construct()
+    {
+        $this->defaultEntityManager = $this->get('doctrine.orm.default_entity_manager');
+    }
+
     public function setUp()
     {
-        $purger = new ORMPurger($this->get('doctrine.orm.default_entity_manager'));
+        $purger = new ORMPurger($this->defaultEntityManager);
         $purger->purge();
 
         $this->client = static::createClient();

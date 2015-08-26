@@ -3,6 +3,7 @@
 namespace AppBundle\Tests\Controller;
 
 use AppBundle\Test\ApiTestCase;
+use Nelmio\Alice\Loader\Yaml as Loader;
 
 class MovieControllerTest extends ApiTestCase
 {
@@ -17,9 +18,13 @@ class MovieControllerTest extends ApiTestCase
         $this->assertSuccessfulCreateResponse($this->client->getResponse(), 'movie/movie_create');
     }
 
-    public function testShowMovieResponse()
+    public function testShowMovie()
     {
-        $movieId = $this->createMovie('My movie', 'My description', new \DateTime('2015-08-20'));
+        $movieId = $this->createMovie(array(
+            'title' => 'My movie',
+            'description' =>'My description',
+            'releaseDate'=> '2015-08-20'
+        ));
 
         $this->client->request('GET', '/movies/'.$movieId);
 
@@ -28,18 +33,20 @@ class MovieControllerTest extends ApiTestCase
 
     public function testShowMoviesList()
     {
-        //TODO change to alice
-        for ($i = 0; $i < 3; ++$i) {
-            $this->createMovie('Some movie'.$i, 'Some description'.$i, new \DateTime('2015-08-0'.$i));
-        }
+        $this->loadMovies();
+
         $this->client->request('GET', '/movies/');
 
-        $this->assertSuccessfulRetrieveResponse($this->client->getResponse(), 'movie/movies_list');
+        $this->assertSuccessfulGetResponse($this->client->getResponse(), 'movie/movies_list');
     }
 
     function testUpdateMovie()
     {
-        $movieId = $this->createMovie('My movie', 'My description', new \DateTime('2015-08-20'));
+        $movieId = $this->createMovie(array(
+            'title' => 'My movie',
+            'description' =>'My description',
+            'releaseDate'=> '2015-08-20'
+        ));
 
         $this->client->request('PUT', '/movies/'.$movieId, [
             'title' => 'Not my movie',
@@ -47,23 +54,31 @@ class MovieControllerTest extends ApiTestCase
             'releaseDate' => '2015-08-20'
         ]);
 
-        $this->assertSuccessfulUpdateResponse($this->client->getResponse(), 'movie/movie_update');
+        $this->assertSuccessfulUpdateResponse($this->client->getResponse());
     }
 
     function testPartialUpdateMovie()
     {
-        $movieId = $this->createMovie('My movie', 'My description', new \DateTime('2015-08-20'));
+        $movieId = $this->createMovie(array(
+            'title' => 'My movie',
+            'description' =>'My description',
+            'releaseDate'=> '2015-08-20'
+        ));
 
-        $this->client->request('PUT', '/movies/'.$movieId, [
+        $this->client->request('PATCH', '/movies/'.$movieId, [
             'title' => 'Not my movie',
         ]);
 
-        $this->assertSuccessfulPartialUpdateResponse($this->client->getResponse(), 'movie/movie_partial_update');
+        $this->assertSuccessfulPartialUpdateResponse($this->client->getResponse());
     }
 
     function testDeleteMovie()
     {
-        $movieId = $this->createMovie('My movie', 'My description', new \DateTime('2015-08-20'));
+        $movieId = $this->createMovie(array(
+            'title' => 'My movie',
+            'description' =>'My description',
+            'releaseDate'=> '2015-08-20'
+        ));
 
         $this->client->request('DELETE', '/movies/'.$movieId);
 
@@ -80,5 +95,15 @@ class MovieControllerTest extends ApiTestCase
         $jsonResponse = json_decode($this->client->getResponse()->getContent());
 
         return $jsonResponse->id;
+    }
+
+    private function loadMovies()
+    {
+        $loader = new Loader();
+        $objects = $loader->load(__DIR__.'/../../DataFixtures/TestData/movies.yml');
+        foreach ($objects as $object) {
+            $this->defaultEntityManager->persist($object);
+        }
+        $this->defaultEntityManager->flush();
     }
 }

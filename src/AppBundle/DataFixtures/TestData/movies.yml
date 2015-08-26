@@ -1,0 +1,9 @@
+AppBundle\Entity\Movie:
+    movie1:
+        title: 'Some movie1'
+        description: 'Some description1'
+        releaseDate: '2015-08-01'
+    movie2:
+        title: 'Some movie2'
+        description: 'Some description2'
+        releaseDate: '2015-08-02'
