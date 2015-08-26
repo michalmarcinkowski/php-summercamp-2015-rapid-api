@@ -147,6 +147,14 @@ abstract class ApiTestCase extends BaseWebTestCase
     /**
      * @param Response $response
      */
+    protected function assertValidationFailResponse(Response $response)
+    {
+        $this->assertJsonResponseMatching($response, 'error/validation_fail_response', Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * @param Response $response
+     */
     protected function assertBadRequestResponse(Response $response)
     {
         $this->assertJsonResponseMatching($response, 'error/bad_request_response', Response::HTTP_BAD_REQUEST);

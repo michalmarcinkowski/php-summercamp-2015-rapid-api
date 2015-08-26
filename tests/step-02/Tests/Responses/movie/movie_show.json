@@ -1,0 +1,7 @@
+{
+  "id": @integer@,
+  "title": "My movie",
+  "description": "My description",
+  "release_date": "2015-08-20T00:00:00-0400",
+  "budget": 100000
+}

@@ -1,0 +1,28 @@
+{
+  "id": @integer@,
+  "title": "Some movie",
+  "description": "Some description",
+  "release_date": "2015-08-25",
+  "_links": {
+    "self": {
+      "href": @string@
+    },
+    "genre": {
+      "href": @string@
+    }
+  },
+  "_embedded": {
+    "genre": {
+      "id": @integer@,
+      "name": "Fantasy",
+      "_links": {
+        "self": {
+          "href": @string@
+        },
+        "movies": {
+          "href": @string@
+        }
+      }
+    }
+  }
+}

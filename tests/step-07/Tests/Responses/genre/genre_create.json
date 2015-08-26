@@ -1,0 +1,12 @@
+{
+  "id": @integer@,
+  "name": "Drama",
+  "_links": {
+    "self": {
+      "href":@string@
+    },
+    "movies": {
+      "href": @string@
+    }
+  }
+}

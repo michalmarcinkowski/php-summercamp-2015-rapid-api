@@ -1,0 +1,11 @@
+{
+  "id": @integer@,
+  "title": "Some movie",
+  "description": "Some description",
+  "release_date": "2015-08-25",
+  "_links": {
+    "self": {
+      "href":@string@
+    }
+  }
+}

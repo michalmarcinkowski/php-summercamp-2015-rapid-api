@@ -1,0 +1,68 @@
+{
+  "page": @integer@,
+  "limit": @integer@,
+  "pages": @integer@,
+  "total": @integer@,
+  "_links": {
+    "self": {
+      "href": @string@
+    },
+    "first": {
+      "href": @string@
+    },
+    "last": {
+      "href": @string@
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "id": @integer@,
+        "title": "The Lord of the Rings: The Fellowship of the Ring",
+        "description": "A hobbit wants destroy the One Ring and the dark lord Sauron.",
+        "release_date": "2001-12-10",
+        "_links": {
+          "self": {
+            "href":@string@
+          }
+        }
+      },
+      {
+        "id": @integer@,
+        "title": "The Godfather",
+        "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
+        "release_date": "1972-03-15",
+        "_links": {
+          "self": {
+            "href":@string@
+          }
+        }
+      },
+      {
+        "id": @integer@,
+        "title": "Star Wars",
+        "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the universe from the Empire world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.",
+        "release_date": "1977-05-25",
+        "_links": {
+          "self": {
+            "href":@string@
+          },
+          "genre": {
+            "href": @string@
+          }
+        },
+        "_embedded": {
+          "genre": {
+            "id": @integer@,
+            "name": "Fantasy",
+            "_links": {
+              "self": {
+                "href": @string@
+              }
+            }
+          }
+        }
+      }
+    ]
+  }
+}
