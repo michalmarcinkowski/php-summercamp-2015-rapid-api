@@ -12,6 +12,7 @@ class TestDataLoader extends DataFixtureLoader
     protected function getFixtures()
     {
         return array(
+            __DIR__.'/../TestData/genres.yml',
             __DIR__.'/../TestData/movies.yml',
         );
     }

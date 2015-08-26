@@ -7,3 +7,7 @@ app_homepage:
 app_movie:
     resource: app.movie
     type: sylius.api
+
+app_genre:
+    resource: app.genre
+    type: sylius.api

@@ -13,3 +13,6 @@ sylius_resource:
         app.movie:
             classes:
                 model: AppBundle\Entity\Movie
+        app.genre:
+            classes:
+                model: AppBundle\Entity\Genre

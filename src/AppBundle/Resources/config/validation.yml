@@ -6,3 +6,8 @@ AppBundle\Entity\Movie:
             - NotBlank: ~
         releaseDate:
             - NotBlank: ~
+
+AppBundle\Entity\Genre:
+    properties:
+        name:
+            - NotBlank: ~

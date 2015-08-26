@@ -1,0 +1,5 @@
+AppBundle\Entity\Genre:
+    genre1:
+        name: 'Drama'
+    genre2:
+        name: 'Fantasy'

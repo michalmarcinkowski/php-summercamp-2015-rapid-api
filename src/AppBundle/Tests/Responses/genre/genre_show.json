@@ -1,0 +1,9 @@
+{
+  "id": @integer@,
+  "name": "Fantasy",
+  "_links": {
+    "self": {
+      "href":@string@
+    }
+  }
+}
