@@ -1,0 +1,29 @@
+{
+  "page": 1,
+  "limit": 10,
+  "pages": 1,
+  "total": 2,
+  "_links": {
+    "self": {
+      "href": @string@
+    },
+    "first": {
+      "href": @string@
+    },
+    "last": {
+      "href": @string@
+    }
+  },
+  "_embedded": {
+    "items": [
+      {
+        "id": @integer@,
+        "name": "Drama"
+      },
+      {
+        "id": @integer@,
+        "name": "Fantasy"
+      }
+    ]
+  }
+}

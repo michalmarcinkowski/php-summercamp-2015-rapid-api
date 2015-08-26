@@ -1,0 +1,9 @@
+AppBundle\Entity\Movie:
+    movie1:
+        title: 'The Lord of the Rings: The Fellowship of the Ring'
+        description: 'A hobbit wants destroy the One Ring and the dark lord Sauron.'
+        releaseDate: '2001-12-10'
+    movie2:
+        title: 'The Godfather'
+        description: 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.'
+        releaseDate: '1972-03-15'

@@ -9,8 +9,17 @@
     "require": {
         "php": ">=5.4",
 
-        "sensio/generator-bundle":              "~2.3",
-        "sylius/sylius":                        "dev-resource-bundle-refactoring"
+        "sensio/generator-bundle": "~2.3",
+        "sylius/sylius": "dev-resource-bundle-refactoring",
+        "doctrine/doctrine-migrations-bundle": "~1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~4.5",
+        "polishsymfonycommunity/symfony-mocker-container": "~1.0",
+        "coduo/php-matcher": "~1.1",
+        "phpspec/php-diff": "~1.0",
+        "doctrine/doctrine-fixtures-bundle": "~2.0",
+        "hautelook/alice-bundle": "0.2.*"
     },
     "repositories": [
         {
@@ -21,12 +30,14 @@
     "scripts": {
         "post-install-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"

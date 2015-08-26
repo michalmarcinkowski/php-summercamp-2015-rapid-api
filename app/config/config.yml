@@ -42,3 +42,7 @@ doctrine:
 
 sylius_translation:
     default_locale: %locale%
+
+hautelook_alice:
+    locale: en_US
+    seed: 1

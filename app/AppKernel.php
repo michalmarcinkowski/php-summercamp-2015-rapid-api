@@ -21,7 +21,9 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Sylius\Bundle\TranslationBundle\SyliusTranslationBundle(),
+            new winzou\Bundle\StateMachineBundle\winzouStateMachineBundle(),
             new AppBundle\AppBundle(),
         );
 
@@ -29,6 +31,8 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
         }
 
         return $bundles;
@@ -46,5 +50,13 @@ class AppKernel extends Kernel
         if (is_file($file = $rootDir.'/config/config_'.$this->environment.'.local.yml')) {
             $loader->load($file);
         }
+    }
+
+    protected function getContainerBaseClass()
+    {
+        if ('test' === $this->environment) {
+            return '\PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer';
+        }
+        return parent::getContainerBaseClass();
     }
 }
