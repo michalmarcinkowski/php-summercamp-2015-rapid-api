@@ -48,4 +48,12 @@ class AppKernel extends Kernel
             $loader->load($file);
         }
     }
+
+    protected function getContainerBaseClass()
+    {
+        if ('test' === $this->environment) {
+            return '\PSS\SymfonyMockerContainer\DependencyInjection\MockerContainer';
+        }
+        return parent::getContainerBaseClass();
+    }
 }

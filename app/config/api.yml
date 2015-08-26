@@ -6,4 +6,4 @@ fos_rest:
             xml:  true
     format_listener:
         rules:
-            - { path: '^/', priorities: ['json', 'xml'], fallback_format: json, prefer_extension: true }
+            - { path: '^/', priorities: ['json'], fallback_format: json, prefer_extension: true }
