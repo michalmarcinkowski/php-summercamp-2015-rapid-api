@@ -20,13 +20,23 @@
         "id": @integer@,
         "title": "The Lord of the Rings: The Fellowship of the Ring",
         "description": "A hobbit wants destroy the One Ring and the dark lord Sauron.",
-        "release_date": "2001-12-10"
+        "release_date": "2001-12-10",
+        "_links": {
+          "self": {
+            "href":@string@
+          }
+        }
       },
       {
         "id": @integer@,
         "title": "The Godfather",
         "description": "The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.",
-        "release_date": "1972-03-15"
+        "release_date": "1972-03-15",
+        "_links": {
+          "self": {
+            "href":@string@
+          }
+        }
       }
     ]
   }

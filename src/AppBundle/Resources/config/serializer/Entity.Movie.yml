@@ -15,3 +15,9 @@ AppBundle\Entity\Movie:
         releaseDate:
             expose: true
             type: DateTime<'Y-m-d'>
+    relations:
+        - rel: self
+          href:
+              route: app_api_movie_show
+              parameters:
+                  id: expr(object.getId())
