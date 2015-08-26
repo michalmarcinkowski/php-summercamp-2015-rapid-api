@@ -16,3 +16,4 @@ AppBundle\Entity\Movie:
             type: date
         budget:
             type: integer
+            nullable: true

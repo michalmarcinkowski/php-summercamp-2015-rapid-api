@@ -19,6 +19,37 @@ class MovieControllerTest extends ApiTestCase
         $this->assertSuccessfulCreateResponse($this->client->getResponse(), 'movie/movie_create');
     }
 
+    function testCreateMovieWithoutBudget()
+    {
+        $this->client->request('POST', '/movies/', [
+            'title' => 'Some movie',
+            'description' => 'Some description',
+            'releaseDate' => '2015-08-25'
+        ]);
+
+        $this->assertSuccessfulCreateResponse($this->client->getResponse(), 'movie/movie_create_without_budget');
+    }
+
+    function testCreateMovieWithoutTitle()
+    {
+        $this->client->request('POST', '/movies/', [
+            'description' => 'Some description',
+            'releaseDate' => '2015-08-25'
+        ]);
+
+        $this->assertValidationFailResponse($this->client->getResponse());
+    }
+
+    function testCreateMovieWithoutDescription()
+    {
+        $this->client->request('POST', '/movies/', [
+            'title' => 'Some movie',
+            'releaseDate' => '2015-08-25'
+        ]);
+
+        $this->assertValidationFailResponse($this->client->getResponse());
+    }
+
     public function testShowMovie404()
     {
         $this->client->request('GET', '/movies/1');

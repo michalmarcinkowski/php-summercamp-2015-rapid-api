@@ -1,0 +1,8 @@
+AppBundle\Entity\Movie:
+    properties:
+        title:
+            - NotBlank: ~
+        description:
+            - NotBlank: ~
+        releaseDate:
+            - NotBlank: ~
