@@ -1,0 +1,17 @@
+AppBundle\Entity\Movie:
+    exclusion_policy: ALL
+    xml_root_name: movie
+    properties:
+        id:
+            expose: true
+            type: integer
+            xml_attribute: true
+        title:
+            expose: true
+            type: string
+        description:
+            expose: true
+            type: string
+        releaseDate:
+            expose: true
+            type: DateTime<'Y-m-d'>

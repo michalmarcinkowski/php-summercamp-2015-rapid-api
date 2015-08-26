@@ -2,5 +2,5 @@
   "id": @integer@,
   "title": "Some movie",
   "description": "Some description",
-  "release_date": "2015-08-25T00:00:00-0400"
+  "release_date": "2015-08-25"
 }
