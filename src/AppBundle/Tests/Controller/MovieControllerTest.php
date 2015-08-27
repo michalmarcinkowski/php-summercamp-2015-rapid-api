@@ -50,6 +50,22 @@ class MovieControllerTest extends ApiTestCase
         $this->assertValidationFailResponse($this->client->getResponse());
     }
 
+    function testCreateMovieWithGenre()
+    {
+        $genreId = $this->createGenre(array(
+            'name' => 'Fantasy'
+        ));
+
+        $this->client->request('POST', '/movies/', [
+            'title' => 'Some movie',
+            'description' => 'Some description',
+            'releaseDate' => '2015-08-25',
+            'genre' => $genreId
+        ]);
+
+        $this->assertSuccessfulCreateResponse($this->client->getResponse(), 'movie/movie_create_with_genre');
+    }
+
     public function testShowMovie404()
     {
         $this->client->request('GET', '/movies/1');
@@ -143,6 +159,24 @@ class MovieControllerTest extends ApiTestCase
         $this->assertSuccessfulDeleteResponse($this->client->getResponse());
     }
 
+    function testDeleteMovieWithGenre()
+    {
+        $genreId = $this->createGenre(array(
+            'name' => 'Fantasy'
+        ));
+
+        $movieId = $this->createMovie(array(
+            'title' => 'My movie',
+            'description' =>'My description',
+            'releaseDate'=> '2015-08-20',
+            'genre' => $genreId
+        ));
+
+        $this->client->request('DELETE', '/movies/'.$movieId);
+
+        $this->assertSuccessfulDeleteResponse($this->client->getResponse());
+    }
+
     /**
      * @param array $data
      *
@@ -158,10 +192,37 @@ class MovieControllerTest extends ApiTestCase
     private function loadMovies()
     {
         $loader = new Loader();
-        $objects = $loader->load(__DIR__.'/../../DataFixtures/TestData/movies.yml');
+        // load movie genres
+        $genres = $loader->load(__DIR__.'/../../DataFixtures/TestData/genres.yml');
+        $this->persistObjects($genres);
+
+        $movies = $loader->load(__DIR__.'/../../DataFixtures/TestData/movies.yml');
+        $this->persistObjects($movies);
+
+        $this->defaultEntityManager->flush();
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return int Id of created genre
+     */
+    private function createGenre($data) {
+        $this->client->request('POST', '/genres/', $data);
+        $jsonResponse = json_decode($this->client->getResponse()->getContent());
+
+        return $jsonResponse->id;
+    }
+
+    /**
+     * @param $objects
+     *
+     * @return mixed
+     */
+    private function persistObjects($objects)
+    {
         foreach ($objects as $object) {
             $this->defaultEntityManager->persist($object);
         }
-        $this->defaultEntityManager->flush();
     }
 }

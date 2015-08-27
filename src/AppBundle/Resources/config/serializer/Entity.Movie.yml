@@ -21,3 +21,13 @@ AppBundle\Entity\Movie:
               route: app_api_movie_show
               parameters:
                   id: expr(object.getId())
+        - rel: genre
+          href:
+              route: app_api_genre_show
+              parameters:
+                  id: expr(object.getGenre().getId())
+          embedded:
+              content: expr(object.getGenre())
+              xmlElementName: genre
+          exclusion:
+              exclude_if: expr(object.getGenre() === null)

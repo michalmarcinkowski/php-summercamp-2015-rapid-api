@@ -37,6 +37,31 @@
             "href":@string@
           }
         }
+      },
+      {
+        "id": @integer@,
+        "title": "Star Wars",
+        "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the universe from the Empire world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.",
+        "release_date": "1977-05-25",
+        "_links": {
+          "self": {
+            "href":@string@
+          },
+          "genre": {
+            "href": @string@
+          }
+        },
+        "_embedded": {
+          "genre": {
+            "id": @integer@,
+            "name": "Fantasy",
+            "_links": {
+              "self": {
+                "href": @string@
+              }
+            }
+          }
+        }
       }
     ]
   }

@@ -32,6 +32,11 @@ class Movie implements ResourceInterface
     private $budget;
 
     /**
+     * @var Genre
+     */
+    private $genre;
+
+    /**
      * @return integer
      */
     public function getId()
@@ -101,5 +106,21 @@ class Movie implements ResourceInterface
     public function setBudget($budget)
     {
         $this->budget = $budget;
+    }
+
+    /**
+     * @return Genre
+     */
+    public function getGenre()
+    {
+        return $this->genre;
+    }
+
+    /**
+     * @param Genre $genre
+     */
+    public function setGenre(Genre $genre)
+    {
+        $this->genre = $genre;
     }
 }

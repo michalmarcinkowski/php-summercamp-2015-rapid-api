@@ -9,3 +9,8 @@ AppBundle\Entity\Movie:
         description: 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.'
         releaseDate: '1972-03-15'
         budget: 100000
+    movie3:
+        title: 'Star Wars'
+        description: 'Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a wookiee and two droids to save the universe from the Empire world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.'
+        releaseDate: '1977-05-25'
+        genre: @genre2

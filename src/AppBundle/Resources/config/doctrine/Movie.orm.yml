@@ -17,3 +17,9 @@ AppBundle\Entity\Movie:
         budget:
             type: integer
             nullable: true
+    manyToOne:
+        genre:
+            targetEntity: Genre
+            joinColumn:
+                name: genre_id
+                referencedColumnName: id
