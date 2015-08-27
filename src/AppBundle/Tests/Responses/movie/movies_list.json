@@ -58,6 +58,9 @@
             "_links": {
               "self": {
                 "href": @string@
+              },
+              "movies": {
+                "href": @string@
               }
             }
           }

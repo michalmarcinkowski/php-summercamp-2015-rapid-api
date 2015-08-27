@@ -22,6 +22,9 @@
         "_links": {
           "self": {
             "href":@string@
+          },
+          "movies": {
+            "href": @string@
           }
         }
       },
@@ -31,6 +34,9 @@
         "_links": {
           "self": {
             "href":@string@
+          },
+          "movies": {
+            "href": @string@
           }
         }
       }

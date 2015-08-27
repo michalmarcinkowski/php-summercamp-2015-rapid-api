@@ -10,3 +10,7 @@ AppBundle\Entity\Genre:
         name:
             type: string
             length: 255
+    oneToMany:
+        movies:
+            targetEntity: Movie
+            mappedBy: genre

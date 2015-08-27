@@ -103,6 +103,26 @@ class MovieControllerTest extends ApiTestCase
         $this->assertSuccessfulGetResponse($this->client->getResponse(), 'movie/movies_list');
     }
 
+    public function testShowMoviesByGenre()
+    {
+        $this->loadMovies();
+
+        $genreId = $this->createGenre(array(
+            'name' => 'My genre'
+        ));
+
+        $this->createMovie(array(
+            'title' => 'Some movie',
+            'description' => 'Some description',
+            'releaseDate' => '2015-08-25',
+            'genre' => $genreId
+        ));
+
+        $this->client->request('GET', sprintf('/genres/%d/movies/', $genreId));
+
+        $this->assertSuccessfulGetResponse($this->client->getResponse(), 'movie/movies_by_genre');
+    }
+
     function testUpdateMovie()
     {
         $movieId = $this->createMovie(array(

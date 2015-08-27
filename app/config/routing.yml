@@ -11,3 +11,11 @@ app_movie:
 app_genre:
     resource: app.genre
     type: sylius.api
+
+app_api_genre_movies:
+    path: /genres/{id}/movies/
+    defaults:
+        _controller: app.controller.movie:indexAction
+        _sylius:
+            criteria:
+                genre: $id

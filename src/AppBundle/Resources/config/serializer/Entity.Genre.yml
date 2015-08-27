@@ -15,3 +15,8 @@ AppBundle\Entity\Genre:
               route: app_api_genre_show
               parameters:
                   id: expr(object.getId())
+        - rel: movies
+          href:
+              route: app_api_genre_movies
+              parameters:
+                  id: expr(object.getId())
