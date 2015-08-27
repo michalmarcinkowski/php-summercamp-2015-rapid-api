@@ -31,4 +31,3 @@ AppBundle\Entity\Movie:
 4. Clear cache `app/console cache:clear` and `app/console cache:clear --env=test`.
 
 5. Run the tests again. You should see all green!
-
